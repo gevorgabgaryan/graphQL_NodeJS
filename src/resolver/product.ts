@@ -68,11 +68,11 @@ export const ProductsResolver = {
                 if (!id) throw new Error('No id provided');
                 const product = await Product.findById(args.id);
                 if (!product) throw new Error('No product found');
-                const deleteProduct = await Product.findByIdAndDelete(id);
+                await Product.findByIdAndDelete(id);
                 return {
                     success: true,
                     message: 'Product deleted successfully',
-                    id: deleteProduct?._id
+                    id: id
                 };
             } catch (error) {
                 throw error;

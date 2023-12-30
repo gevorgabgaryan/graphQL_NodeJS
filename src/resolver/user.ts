@@ -82,11 +82,11 @@ export const UsersResolver = {
                 if (!id) throw new Error('No id provided');
                 const user = await User.findById(args.id);
                 if (!user) throw new Error('User not found');
-                const deleteUser = await User.findByIdAndDelete(id);
+                await User.findByIdAndDelete(id);
                 return {
                     success: true,
                     message: 'User deleted successfully',
-                    id: deleteUser?._id
+                    id: id
                 };
             } catch (error) {
                 throw error;

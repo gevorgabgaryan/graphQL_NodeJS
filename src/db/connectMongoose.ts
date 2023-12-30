@@ -1,10 +1,10 @@
 import mongoose from 'mongoose'
-import Config from '../config'
+import config from '../config'
 import logger from '../logger'
 
 class MongooseService {
   static async init () {
-    const url = Config.mongoDB.url
+    const url = config.mongoDB.url
     const db = mongoose.connection
 
     db.on('connected', () => {
@@ -19,7 +19,7 @@ class MongooseService {
     })
 
     try {
-      await mongoose.connect(`${url}/${Config.mongoDB.dbName}`)
+      await mongoose.connect(`${url}/${config.mongoDB.dbName}`)
     } catch (e) {
       logger.info('Mongo connection error')
       logger.error(e)
